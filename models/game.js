@@ -21,7 +21,7 @@ const GameSchema = new Schema({
       },
     ],
   },
-  _id: { type: Number, required: true },
+  key: { type: Number, required: true },
 });
 
 module.exports = mongoose.model('Game', GameSchema);
