@@ -17,7 +17,6 @@ const GameSchema = new Schema({
             _id: false,
           },
         },
-        _id: false,
       },
     ],
   },
