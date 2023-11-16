@@ -50,3 +50,5 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
+
+// maybe change entry schema time duration to milliseconds??
