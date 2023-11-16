@@ -1,6 +1,5 @@
 const Game = require('../models/game');
 const asyncHandler = require('express-async-handler');
-const mongoose = require('mongoose');
 
 // Display game image
 exports.game_img_get = asyncHandler(async (req, res, next) => {
