@@ -21,7 +21,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(compression());
-app.use(helmet());
+app.use(helmet({ crossOriginResourcePolicy: false }));
 
 // rate limit setup
 const RateLimit = require('express-rate-limit');
