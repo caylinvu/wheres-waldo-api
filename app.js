@@ -14,7 +14,11 @@ const app = express();
 
 // cors setup
 const cors = require('cors');
-app.use(cors());
+const corsOptions = {
+  origin: ['http://localhost:5173', process.env.ORIGIN],
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 app.use(compression());
 app.use(helmet());
