@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const compression = require('compression');
+const helmet = require('helmet');
 require('dotenv').config();
 
 const indexRouter = require('./routes/index');
@@ -10,10 +12,26 @@ const apiRouter = require('./routes/api');
 
 const app = express();
 
+// cors setup
+const cors = require('cors');
+app.use(cors());
+
+app.use(compression());
+app.use(helmet());
+
+// rate limit setup
+const RateLimit = require('express-rate-limit');
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 30,
+});
+
+app.use(limiter);
+
 // mongoose connection setup
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
-const mongoDB = process.env.dev_db_url;
+const mongoDB = process.env.MONGODB_URI || process.env.dev_db_url;
 
 main().catch((err) => console.log(err));
 async function main() {
